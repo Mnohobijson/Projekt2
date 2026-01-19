@@ -1,3 +1,9 @@
+"""
+Druhý projekt do Engeto Online Python Akademie
+Bulls & Cows
+author: Lukáš Fojt
+email: fojt.luk@gmail.com
+"""
 import random
 import time
 from typing import Tuple
