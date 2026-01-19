@@ -1,4 +1,5 @@
 import random
+import time
 from typing import Tuple
 
 # Konstanty
@@ -116,6 +117,25 @@ def format_guesses(count: int) -> str:
     return f"in {count} {guess_word}!"
 
 
+def format_time(seconds: float) -> str:
+    """
+    Formátuje čas do čitelné podoby.
+    
+    Args:
+        seconds: Počet sekund
+        
+    Returns:
+        str: Formátovaný čas
+    """
+    if seconds < 60:
+        return f"{seconds:.1f} seconds"
+    else:
+        minutes = int(seconds // 60)
+        secs = seconds % 60
+        minute_word = "minute" if minutes == 1 else "minutes"
+        return f"{minutes} {minute_word} and {secs:.1f} seconds"
+
+
 def print_intro() -> None:
     """Vypíše úvodní text hry."""
     print("Hi there!")
@@ -131,6 +151,7 @@ def play_game() -> None:
     
     secret_number = generate_secret_number()
     attempts = 0
+    start_time = time.time()  # Zaznamenání času začátku hry
     
     while True:
         print("Enter a number:")
@@ -151,8 +172,10 @@ def play_game() -> None:
         
         # Kontrola výhry
         if bulls == NUMBER_LENGTH:
+            elapsed_time = time.time() - start_time
             print("Correct, you've guessed the right number")
             print(format_guesses(attempts))
+            print(f"It took you {format_time(elapsed_time)}")
             print(SEPARATOR)
             print("That's amazing!")
             break
