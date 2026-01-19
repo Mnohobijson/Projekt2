@@ -8,13 +8,7 @@ SEPARATOR = "-" * 47
 
 
 def generate_secret_number() -> str:
-    """
-    Generuje tajné čtyřciferné číslo s unikátními číslicemi.
-    Číslo nezačíná nulou.
-    
-    Returns:
-        str: Čtyřciferné číslo jako řetězec
-    """
+
     digits = list(range(10))
     first_digit = random.choice(range(1, 10))  # První číslice nesmí být 0
     digits.remove(first_digit)
@@ -29,15 +23,7 @@ def generate_secret_number() -> str:
 
 
 def validate_guess(guess: str) -> Tuple[bool, str]:
-    """
-    Validuje uživatelský vstup podle pravidel hry.
     
-    Args:
-        guess: Uživatelem zadané číslo jako řetězec
-        
-    Returns:
-        Tuple[bool, str]: (je_validní, chybová_zpráva)
-    """
     # Kontrola, zda obsahuje jen číslice
     if not guess.isdigit():
         return False, "The guess must contain only digits!"
@@ -58,18 +44,7 @@ def validate_guess(guess: str) -> Tuple[bool, str]:
 
 
 def calculate_bulls_and_cows(secret: str, guess: str) -> Tuple[int, int]:
-    """
-    Vypočítá počet bulls a cows pro daný tip.
-    Bull = správná číslice na správné pozici
-    Cow = správná číslice na špatné pozici
-    
-    Args:
-        secret: Tajné číslo
-        guess: Uživatelův tip
-        
-    Returns:
-        Tuple[int, int]: (počet_bulls, počet_cows)
-    """
+
     bulls = 0
     cows = 0
     
@@ -87,16 +62,7 @@ def calculate_bulls_and_cows(secret: str, guess: str) -> Tuple[int, int]:
 
 
 def format_result(bulls: int, cows: int) -> str:
-    """
-    Formátuje výsledek s ohledem na jednotné/množné číslo.
     
-    Args:
-        bulls: Počet bulls
-        cows: Počet cows
-        
-    Returns:
-        str: Formátovaný výsledek
-    """
     bull_word = "bull" if bulls == 1 else "bulls"
     cow_word = "cow" if cows == 1 else "cows"
     
@@ -104,29 +70,13 @@ def format_result(bulls: int, cows: int) -> str:
 
 
 def format_guesses(count: int) -> str:
-    """
-    Formátuje počet pokusů s ohledem na jednotné/množné číslo.
     
-    Args:
-        count: Počet pokusů
-        
-    Returns:
-        str: Formátovaný text
-    """
     guess_word = "guess" if count == 1 else "guesses"
     return f"in {count} {guess_word}!"
 
 
 def format_time(seconds: float) -> str:
-    """
-    Formátuje čas do čitelné podoby.
-    
-    Args:
-        seconds: Počet sekund
-        
-    Returns:
-        str: Formátovaný čas
-    """
+   
     if seconds < 60:
         return f"{seconds:.1f} seconds"
     else:
@@ -137,8 +87,8 @@ def format_time(seconds: float) -> str:
 
 
 def print_intro() -> None:
-    """Vypíše úvodní text hry."""
-    print("Hi there!")
+
+    print("Hi there!") # Úvodní zpráva
     print(SEPARATOR)
     print(f"I've generated a random {NUMBER_LENGTH} digit number for you.")
     print("Let's play a bulls and cows game.")
@@ -146,8 +96,8 @@ def print_intro() -> None:
 
 
 def play_game() -> None:
-    """Hlavní herní smyčka."""
-    print_intro()
+    
+    print_intro() # Hlavní herní smyčka
     
     secret_number = generate_secret_number()
     attempts = 0
